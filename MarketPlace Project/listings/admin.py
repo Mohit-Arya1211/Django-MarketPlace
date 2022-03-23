@@ -3,4 +3,7 @@ from .models import Listing
 
 # Register your models here.
 
-admin.site.register(Listing)
+class ListingAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'is_published', 'list_date', 'realtor')
+
+admin.site.register(Listing, ListingAdmin)
