@@ -1,4 +1,3 @@
-from re import T
 from django.shortcuts import render
 from listings.models import Listing
 from realtors.models import Realtor

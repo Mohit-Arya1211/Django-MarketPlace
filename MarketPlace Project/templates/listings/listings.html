@@ -27,6 +27,7 @@
       <div class="row">
         {% if listings %}
           {% for listing in listings %}
+
               <!-- Listing 1 -->
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card listing-preview">
@@ -80,31 +81,40 @@
 
       <div class="row">
         <div class="col-md-12">
-          {% if listing.has_other_pages %}
-          <ul class="pagination">
-            {% if listing.has_previous %}
-            <li class="page-item">
-                <a href="?page={{lisitngs.previous_page_number}}" class="page-link">&laquo;</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-              <a class="page-link">&laquo;</a>
-            </li>
-            {% endif %}
-
-            {% for i in listings.paginator.page_range %}
-              {% if listing.number == i %}
-                <li class="page-item active">
-                  <a class="page-link">{{i}}</a>
+          {% if listings.has_other_pages %}
+            <ul class="pagination">
+              {% if listings.has_previous %}
+                <li class="page-item">
+                  <a href="?page={{listings.previous_page_number}}" class="page-link">&laquo;</a>
                 </li>
               {% else %}
-                <li class="page-item">
-                  <a href="?page={{i}}" class="page-link">{{i}}</a>
+                <li class="page-item disabled">
+                  <a href="" class="page-link">&laquo;</a>
                 </li>
               {% endif %}
-          {% endfor %}
-          
-          </ul>
+
+              {% for i in listings.paginator.page_range %}
+                {% if listings.number == i %}
+                  <li class="page-item active ">
+                    <a class="page-link">{{i}}</a>
+                  </li>
+                {% else %}  
+                  <li class="page-item">
+                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+
+              {% if listings.has_next %}
+                <li class="page-item">
+                  <a href="?page={{listings.next_page_number}}" class="page-link">&raquo;</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a href="" class="page-link">&raquo;</a>
+                </li>
+              {% endif %}
+            </ul>
           {% endif %}
         </div>
       </div>
